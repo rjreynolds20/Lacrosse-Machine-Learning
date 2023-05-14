@@ -2,16 +2,6 @@ import pandas as pd
 import numpy as np
 import math
 
-# Want to read in CSV file.
-# Want to create a CSV file with all A - B games, and another with the B - A games.
-# One row should have all of A's features followed by all of B's features followed by Home Win, Neutral Win, Away Win
-# Want to remove goals/goals against at a future time.
-
-# Remove Goals, Goals Against, Games w/o duplicates.
-# Want an outside loop to go through each row.
-# Want a check to make sure that the dates are the same.
-# Want another check to make sure that you're getting the opponents game data.
-
 
 # Gathers team's data while ignoring specific features for reformat.
 def gatherTeamData(df, row, status):
@@ -93,8 +83,6 @@ def bruteForceReformat(df):
 
 ######################################################################################################################
 
-# 18-21 34-40
-
 def searchDuplicate(df, teamName, opponentName, teamWin, currRow):
     count = 0
     for i in range(0, len(df), 1):
@@ -120,7 +108,7 @@ def separateData(df):
 ######################################################################################################################
 
 
-def removeCommas(df): #15, 33, 39
+def removeCommas(df):
     data = []
     for row in range(0, len(df), 1):
         if (df[row][15].find(',') != -1):
@@ -140,7 +128,7 @@ def removeCommas(df): #15, 33, 39
 
 ######################################################################################################################
 
-# Calling Section - Below!
+# Calling Section 
 
 ######################################################################################################################
 
@@ -163,6 +151,3 @@ headers = ['Team', 'Date', 'Home/Neutral/Away', 'OT', 'Assists', 'Points', 'Shot
 csvData = removeCommas(df)
 data = pd.DataFrame(csvData, columns=headers)
 data.to_csv("TEMP.csv", index=False)
-
-# Want to gather win data and new head coach feature.
-# Error with the games that were cancelled <--- show up as loss for both teams.
